@@ -4,6 +4,9 @@ public class HungryCheck {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        // Clearing the terminal screen
+        clearScreen();
+
         System.out.println("Are you hungry? (yes/no)");
         String response = scanner.nextLine().toLowerCase();
 
@@ -16,5 +19,19 @@ public class HungryCheck {
         }
 
         scanner.close();
+    }
+
+    // Method to clear the terminal screen
+    private static void clearScreen() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (Exception e) {
+            // Handle any exceptions
+            e.printStackTrace();
+        }
     }
 }
